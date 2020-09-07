@@ -20,18 +20,18 @@ class CreateTransactionService {
     category,
   }: RequestDTO): Promise<Transaction> {
     if (!['income', 'outcome'].includes(type)) {
-      throw new AppError('Transaction type is invalid', 403);
+      throw new AppError('Transaction type is invalid', 400);
     }
 
     if (!category) {
-      throw new AppError('Category is missing', 403);
+      throw new AppError('Category is missing', 400);
     }
 
     const transactionRepository = getCustomRepository(TransactionsRepository);
 
     const { total } = await transactionRepository.getBalance();
     if (type === 'outcome' && total < value) {
-      throw new AppError('You do not have enough balance', 403);
+      throw new AppError('You do not have enough balance', 400);
     }
 
     // validar se ja existe a categoria se nao criar
