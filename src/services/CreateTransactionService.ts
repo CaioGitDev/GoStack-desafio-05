@@ -1,8 +1,8 @@
 import { getCustomRepository, getRepository, Repository } from 'typeorm';
 import AppError from '../errors/AppError';
 
-import Transaction from '../models/Transaction';
 import TransactionsRepository from '../repositories/TransactionsRepository';
+import Transaction from '../models/Transaction';
 import Category from '../models/Category';
 
 interface RequestDTO {
